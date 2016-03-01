@@ -30,13 +30,13 @@ public class TestAction extends BaseApiAction{
     @Override
     public ApiResult doApi() throws Exception {
         try {
-
             List<Test> testList = TestService.getAll();
             Test test = TestService.getById(param.getId());
 
             Map<String, Object> rs = new HashMap<String, Object>();
             rs.put("allTest", testList);
             rs.put("test", test);
+
             return result_success(1, rs);
         } catch (Exception e) {
             e.printStackTrace();
