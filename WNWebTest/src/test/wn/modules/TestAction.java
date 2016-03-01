@@ -24,7 +24,7 @@ public class TestAction extends BaseApiAction{
     @Override
     protected void registResult(Map<Integer, String> map) {
         map.put(1,"添加成功");
-        map.put(-2,"添加失败");
+        map.put(-1,"添加失败");
     }
 
     @Override
@@ -41,7 +41,7 @@ public class TestAction extends BaseApiAction{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result_success(2);
+        return result_fail(-1);
     }
 
     public TestForm getParam() {
