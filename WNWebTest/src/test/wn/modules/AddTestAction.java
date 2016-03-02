@@ -15,6 +15,11 @@ import java.util.Map;
 @ApiDefined(label = "添加测试数据",description = "添加test信息")
 public class AddTestAction extends BaseApiAction {
 
+
+
+
+    
+
     @ParamDefined(label = "请求参数",checkType = CheckType.empty)
     private AddTestForm param;
 
