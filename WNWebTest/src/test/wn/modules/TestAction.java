@@ -33,7 +33,7 @@ public class TestAction extends BaseApiAction{
             List<Test> testList = TestService.getAll();
             Test test = TestService.getById(param.getId());
 
-            Map<String, Object> rs = new HashMap<String, Object>();
+            Map<String, Object> rs = new HashMap<>();
             rs.put("allTest", testList);
             rs.put("test", test);
 

@@ -5,6 +5,7 @@ import test.wn.bean.Test;
 import test.wn.requestbean.AddTestForm;
 import test.wn.service.TestService;
 import yao.util.date.DateUtil;
+import yao.util.string.StringUtil;
 
 import java.util.Map;
 
@@ -15,6 +16,11 @@ import java.util.Map;
 @ApiDefined(label = "添加测试数据",description = "添加test信息")
 public class AddTestAction extends BaseApiAction {
 
+
+
+
+
+
     @ParamDefined(label = "请求参数",checkType = CheckType.empty)
     private AddTestForm param;
 
@@ -24,10 +30,14 @@ public class AddTestAction extends BaseApiAction {
     protected void registResult(Map<Integer, String> map) {
         map.put(1,"添加成功");
         map.put(-1,"添加失败");
+        map.put(-2,"名字不能为空");
     }
 
     @Override
     public ApiResult doApi() throws Exception {
+        if (StringUtil.isEmpty(param.getNick_name())){
+            return result_fail(-2);
+        }
         int rs = TestService.isnert(buildTest(param));
         if (rs > 0){
             return result_success(1);
