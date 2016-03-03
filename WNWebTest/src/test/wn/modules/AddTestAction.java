@@ -2,9 +2,11 @@ package test.wn.modules;
 
 import com.weinong.base.*;
 import test.wn.bean.Test;
+import test.wn.core.TestDB;
 import test.wn.requestbean.AddTestForm;
 import test.wn.service.TestService;
 import yao.util.date.DateUtil;
+import yao.util.db.TransService;
 import yao.util.string.StringUtil;
 
 import java.util.Map;
@@ -38,14 +40,28 @@ public class AddTestAction extends BaseApiAction {
         if (StringUtil.isEmpty(param.getNick_name())){
             return result_fail(-2);
         }
-        int rs = TestService.isnert(buildTest(param));
+        //int rs = TestService.isnert(buildTest(param));
+
+        ///事务操作
+        int rs = (int) getTs(buildTest(param)).doService();
+
         if (rs > 0){
             return result_success(1);
         }
         return result_fail(-1);
     }
+    private TransService getTs(final  Test test){
+        TransService ts = new TransService(TestDB.TestDB().getUpdate().getDbPool()) {
+            @Override
+            protected Object service() throws Exception {
+                return TestService.isnert(test);
+            }
+        };
+        return  ts;
+    }
 
     private Test buildTest(AddTestForm param) {
+
         Test test = new Test();
         test.setBank_id(param.getBank_id());
         test.setBase_number(param.getBase_number());
