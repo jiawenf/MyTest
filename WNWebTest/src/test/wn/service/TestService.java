@@ -25,6 +25,7 @@ public class TestService extends BaseService {
 
     ////返回影响的行数
     public static int isnert(Test test) throws SQLException {
+        TestDB.TestDB().getUpdate().updateSingle(test);
         return TestDB.TestDB().getUpdate().insert(test);
     }
 
