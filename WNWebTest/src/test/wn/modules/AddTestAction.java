@@ -2,9 +2,12 @@ package test.wn.modules;
 
 import com.weinong.base.*;
 import test.wn.bean.Test;
+import test.wn.core.TestDB;
 import test.wn.requestbean.AddTestForm;
 import test.wn.service.TestService;
 import yao.util.date.DateUtil;
+import yao.util.db.TransService;
+import yao.util.string.StringUtil;
 
 import java.util.Map;
 
@@ -15,6 +18,11 @@ import java.util.Map;
 @ApiDefined(label = "添加测试数据",description = "添加test信息")
 public class AddTestAction extends BaseApiAction {
 
+
+
+
+
+
     @ParamDefined(label = "请求参数",checkType = CheckType.empty)
     private AddTestForm param;
 
@@ -24,18 +32,36 @@ public class AddTestAction extends BaseApiAction {
     protected void registResult(Map<Integer, String> map) {
         map.put(1,"添加成功");
         map.put(-1,"添加失败");
+        map.put(-2,"名字不能为空");
     }
 
     @Override
     public ApiResult doApi() throws Exception {
-        int rs = TestService.isnert(buildTest(param));
+        if (StringUtil.isEmpty(param.getNick_name())){
+            return result_fail(-2);
+        }
+        //int rs = TestService.isnert(buildTest(param));
+
+        ///事务操作
+        int rs = (int) getTs(buildTest(param)).doService();
+
         if (rs > 0){
             return result_success(1);
         }
         return result_fail(-1);
     }
+    private TransService getTs(final  Test test){
+        TransService ts = new TransService(TestDB.TestDB().getUpdate().getDbPool()) {
+            @Override
+            protected Object service() throws Exception {
+                return TestService.isnert(test);
+            }
+        };
+        return  ts;
+    }
 
     private Test buildTest(AddTestForm param) {
+
         Test test = new Test();
         test.setBank_id(param.getBank_id());
         test.setBase_number(param.getBase_number());
