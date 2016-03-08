@@ -7,8 +7,10 @@
 		<property name="actions">
 			<map>
 				<entry key="test" value="TestAction" />
+				<entry key="add_test" value="AddTestAction" />
 			</map>
 		</property>
 	</bean>
 	<bean name="TestAction" class="test.wn.modules.TestAction" scope="request"/>
+	<bean name="AddTestAction" class="test.wn.modules.AddTestAction" scope="request"/>
 </beans>

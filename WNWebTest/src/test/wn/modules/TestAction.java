@@ -24,24 +24,24 @@ public class TestAction extends BaseApiAction{
     @Override
     protected void registResult(Map<Integer, String> map) {
         map.put(1,"添加成功");
-        map.put(-2,"添加失败");
+        map.put(-1,"添加失败");
     }
 
     @Override
     public ApiResult doApi() throws Exception {
         try {
-
             List<Test> testList = TestService.getAll();
             Test test = TestService.getById(param.getId());
 
-            Map<String, Object> rs = new HashMap<String, Object>();
+            Map<String, Object> rs = new HashMap<>();
             rs.put("allTest", testList);
             rs.put("test", test);
+
             return result_success(1, rs);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result_success(2);
+        return result_fail(-1);
     }
 
     public TestForm getParam() {
