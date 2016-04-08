@@ -18,6 +18,7 @@
 				<entry key="add_company" value="AddCompanyAction" />
 				<entry key="delete_company" value="DeleteCompanyAction" />
 				<entry key="update_company" value="UpdateCompanyAction" />
+				<entry key="company_page" value="CompanyPageAction" />
 			</map>
 		</property>
 	</bean>
@@ -33,4 +34,5 @@
 	<bean name="AddCompanyAction" class="test.wn.modules.yuexiao.AddCompanyAction" scope="request"/>
 	<bean name="DeleteCompanyAction" class="test.wn.modules.yuexiao.DeleteCompanyAction" scope="request"/>
 	<bean name="UpdateCompanyAction" class="test.wn.modules.yuexiao.UpdateCompanyAction" scope="request"/>
+	<bean name="CompanyPageAction" class="test.wn.modules.yuexiao.CompanyPageAction" scope="request"/>
 </beans>
