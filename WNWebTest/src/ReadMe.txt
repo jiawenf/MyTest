@@ -11,4 +11,13 @@ CREATE TABLE `test` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `priority_id` (`priority_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--创建company表(岳晓测试表)
+CREATE TABLE `company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) DEFAULT NULL COMMENT '公司编码',
+  `code` varchar(6) NOT NULL COMMENT '公司编码',
+  `address` varchar(100) CHARACTER SET utf8 DEFAULT NULL COMMENT '公司地址',
 
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code` (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
