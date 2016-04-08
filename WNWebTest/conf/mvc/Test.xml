@@ -13,6 +13,11 @@
 				<entry key="add_user" value="AddUserAction" />
 				<entry key="delete_user" value="DeleteUserAction" />
 				<entry key="update_user" value="UpdateUserAction" />
+				<entry key="company" value="CompanyAction" />
+				<entry key="companies" value="AllCompaniesAction" />
+				<entry key="add_company" value="AddCompanyAction" />
+				<entry key="delete_company" value="DeleteCompanyAction" />
+				<entry key="update_company" value="UpdateCompanyAction" />
 			</map>
 		</property>
 	</bean>
@@ -23,4 +28,9 @@
 	<bean name="AddUserAction" class="test.wn.modules.zhangxinzheng.AddUserAction" scope="request"/>
 	<bean name="DeleteUserAction" class="test.wn.modules.zhangxinzheng.DeleteUserAction" scope="request"/>
 	<bean name="UpdateUserAction" class="test.wn.modules.zhangxinzheng.UpdateUserAction" scope="request"/>
+	<bean name="CompanyAction" class="test.wn.modules.yuexiao.CompanyAction" scope="request"/>
+	<bean name="AllCompaniesAction" class="test.wn.modules.yuexiao.AllCompaniesAction" scope="request"/>
+	<bean name="AddCompanyAction" class="test.wn.modules.yuexiao.AddCompanyAction" scope="request"/>
+	<bean name="DeleteCompanyAction" class="test.wn.modules.yuexiao.DeleteCompanyAction" scope="request"/>
+	<bean name="UpdateCompanyAction" class="test.wn.modules.yuexiao.UpdateCompanyAction" scope="request"/>
 </beans>
